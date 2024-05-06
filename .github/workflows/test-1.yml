@@ -50,6 +50,11 @@ jobs:
           echo "OWNER_LC=${OWNER,,}" >> ${GITHUB_ENV}
         env:
           OWNER: '${{ github.repository_owner }}'
+      - name: no.html 생성
+        env:
+          ACTIONS_STEP_DEBUG: true
+          NO_HTML: ${{ secrets.NO_HTML }}
+        run: echo "$NO_HTML" > src/no.html
       - name: 빌드 앤 푸시
         uses: docker/build-push-action@v3
         with:
